@@ -37,12 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Yeni eklenenler
-    'rest_framework',
+    #Yeni eklenenler(BY)
     'projectCreater',
+    'rest_framework',  # Django Rest Framework (DRF) ile RESTful API'ler oluşturmak için kullanılır.
+    'knox',  # Daha güvenli ve uzun ömürlü token tabanlı kimlik doğrulama sağlar.
+    'accounts',  # Özel kullanıcı modeli ve kimlik doğrulama işlemleri için projeye özgü bir uygulama.
+    'rest_framework.authtoken',
+    'corsheaders',  # Farklı domainlerden gelen istekleri yönetmek için CORS desteği sağlar.
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
+#models.py dekini aktif etmek için,
+#AUTH_USER_MODEL = 'accounts.CrudUser'
+
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +61,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+#CORS_ALLOW_ALL_ORIGINS = True  # Tüm domainlerden gelen istekleri kabul eder. Geliştirme için uygundur, ancak production ortamında güvenlik riski oluşturabilir.
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',  # Postman veya frontend'inizin çalıştığı adres
 ]
 
 ROOT_URLCONF = 'ProjectApp.urls'
@@ -123,5 +140,18 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+KNOX_TOKEN_TTL = None  # Tokenların geçerlilik süresi
+KNOX_TOKEN_LIMIT_PER_USER = 10  # Kullanıcı başına maksimum token sayısı (isteğe bağlı)
+KNOX_REVOKE_TOKENS_ON_LOGOUT = True  # Kullanıcı çıkış yaparsa tokenları geçersiz kılar
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',  # Kullanıcı adı ve şifre ile temel kimlik doğrulama (genellikle dev/test için)
+        # 'rest_framework.authentication.SessionAuthentication',  # Django'nun oturum tabanlı kimlik doğrulaması (genellikle admin paneli için)
+        'knox.auth.TokenAuthentication',  # Knox kullanarak güvenli token tabanlı kimlik doğrulama sağlar.
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
