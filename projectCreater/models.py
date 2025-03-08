@@ -8,11 +8,11 @@ class Project(models.Model):
     ]
 
     internal_external = models.CharField(max_length=10, choices=INTERNAL_EXTERNAL_CHOICES)
-    kurum = models.CharField(max_length=255)
-    telefon = models.CharField(max_length=20)
-    sorumlu_ekip_uyesi = models.ForeignKey(User, on_delete=models.CASCADE)
-    sorumlu_ekip = models.ManyToManyField(User, related_name="ekip_uyeleri")
-    son_teslim_tarihi = models.DateField()
+    organisation = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    team_lead = models.ForeignKey(User, on_delete=models.CASCADE)
+    team_members = models.ManyToManyField(User, related_name="team_members")
+    last_delivery_date = models.DateField()
 
     def __str__(self):
-        return self.kurum
+        return self.organisation
