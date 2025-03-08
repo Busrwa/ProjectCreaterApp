@@ -8,7 +8,6 @@ TeamProjectHub, ekipler için proje yönetimini kolaylaştıran bir backend API'
 - 🔹 **Takım Yönetimi**: Kullanıcıları takımlara atama.
 - 🔹 **Görev Atama**: Proje içindeki görevleri belirli kişilere atama.
 - 🔹 **Son Tarih Takibi**: Projelerin teslim tarihlerini belirleme ve takip etme.
-- 🔹 **Durum Güncelleme**: Proje ve görev durumlarını güncelleme.
 - 🔹 **API Dokümantasyonu**: Swagger veya Postman ile test edilebilir RESTful API.
 
 ## 🛠️ Teknolojiler
@@ -22,8 +21,8 @@ TeamProjectHub, ekipler için proje yönetimini kolaylaştıran bir backend API'
 
 ### 1️⃣ Projeyi Klonlayın
 ```bash
-git clone https://github.com/kullaniciadi/TeamProjectHub-Backend.git
-cd TeamProjectHub-Backend
+git clone https://github.com/kullaniciadi/ProjectCreaterApp.git
+cd ProjectCreaterApp
 ```
 
 ### 2️⃣ Sanal Ortam Oluşturun ve Bağımlılıkları Yükleyin
@@ -45,16 +44,6 @@ uvicorn main:app --reload  # FastAPI için
 python manage.py runserver  # Django için
 ```
 
-## 🔗 API Endpointleri
-| Metod | Endpoint | Açıklama |
-|--------|------------|-------------|
-| GET | `/projects` | Tüm projeleri getir |
-| POST | `/projects` | Yeni proje oluştur |
-| GET | `/projects/{id}` | Belirli projeyi getir |
-| PUT | `/projects/{id}` | Projeyi güncelle |
-| DELETE | `/projects/{id}` | Projeyi sil |
-| GET | `/teams` | Tüm takımları getir |
-| POST | `/teams` | Yeni takım oluştur |
 
 ## 📌 Katkıda Bulunma
 1. **Fork** yapın 📌
@@ -62,8 +51,6 @@ python manage.py runserver  # Django için
 3. Değişikliklerinizi yapın ve **commit** atın
 4. **Pull request** gönderin 🎉
 
-## 📄 Lisans
-Bu proje MIT Lisansı ile lisanslanmıştır.
 
 ---
 💡 **Destek olmak için projeyi yıldızlayabilirsiniz! ⭐**
