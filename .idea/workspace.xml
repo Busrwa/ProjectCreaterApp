@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="da022bbf-927a-4c4d-9e8a-655833e5e2ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectApp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectApp/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectCreater/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectCreater/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +45,7 @@
     &quot;Django Server.ProjectApp.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -99,7 +103,10 @@
       <workItem from="1741108914001" duration="17212000" />
       <workItem from="1741270116368" duration="8196000" />
       <workItem from="1741377424765" duration="3973000" />
-      <workItem from="1741442973669" duration="2238000" />
+      <workItem from="1741442973669" duration="4042000" />
+      <workItem from="1741712203399" duration="3764000" />
+      <workItem from="1741812654258" duration="3278000" />
+      <workItem from="1741935731013" duration="5225000" />
     </task>
     <servers />
   </component>

@@ -9,6 +9,13 @@ from rest_framework.views import APIView  # Çıkış işlemi için
 from rest_framework.exceptions import AuthenticationFailed  # Hatalı doğrulama için
 from django.shortcuts import redirect
 from django.views.generic import RedirectView
+from rest_framework.permissions import IsAdminUser
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import CrudUser
+from .serializers import UserSerializer
+from rest_framework import status
+
 
 
 # Token'ı blacklist'e eklemek için fonksiyon
@@ -66,3 +73,35 @@ class LogoutAPI(APIView):
 # RedirectView örneği
 class ProjectCreaterRedirectView(RedirectView):
     url = '/some-url/'  # Yönlendirmek istediğiniz URL'yi buraya yazın
+
+
+# Kullanıcı listeleme (Sadece Admin)
+class UserListView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        users = CrudUser.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+# Kullanıcı güncelleme (Sadece Admin)
+class UserUpdateView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def put(self, request, pk):
+        user = CrudUser.objects.get(id=pk)
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Kullanıcı silme (Sadece Admin)
+class UserDeleteView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def delete(self, request, pk):
+        user = CrudUser.objects.get(id=pk)
+        user.delete()
+        return Response({"message": "User deleted successfully"})
+

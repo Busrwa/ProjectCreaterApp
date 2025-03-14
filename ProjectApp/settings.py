@@ -151,6 +151,9 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.SessionAuthentication',  # Django'nun oturum tabanlı kimlik doğrulaması (genellikle admin paneli için)
         'knox.auth.TokenAuthentication',  # Knox kullanarak güvenli token tabanlı kimlik doğrulama sağlar.
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 
