@@ -14,5 +14,9 @@ class Project(models.Model):
     team_members = models.ManyToManyField(User, related_name="team_members")
     last_delivery_date = models.DateField()
 
+    # Yeni Alanlar
+    description = models.TextField(blank=True, null=True)  # Açıklama
+    description_added_date = models.DateTimeField(auto_now_add=True)  # Açıklamanın eklenme tarihi
+
     def __str__(self):
         return self.organisation

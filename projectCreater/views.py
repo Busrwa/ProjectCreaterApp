@@ -8,28 +8,28 @@ from .serializers import ProjectSerializer
 class ProjectCreateView(generics.CreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Tüm projeleri listeleme
 class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Belirli bir projeyi görüntüleme
 class ProjectDetailView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Proje güncelleme
 class ProjectUpdateView(generics.UpdateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # Proje silme
 class ProjectDeleteView(generics.DestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
