@@ -9,12 +9,12 @@ from rest_framework.views import APIView
 from rest_framework.exceptions import AuthenticationFailed
 from django.views.generic import RedirectView
 from rest_framework.permissions import IsAdminUser
-from .models import CrudUser
+from django.contrib.auth.models import User
 
-# Token'ı blacklist'e eklemek için fonksiyon
+# Token'ı blacklist'e eklemek için yardımcı fonksiyon 
 def blacklist_token(token):
-    token = AuthToken.objects.get(token=token)
-    token.blacklist()
+    token_obj = AuthToken.objects.get(token=token)
+    token_obj.blacklist()
 
 # Register API - Yeni kullanıcı kaydı yapar
 class RegisterAPI(generics.GenericAPIView):
@@ -23,11 +23,10 @@ class RegisterAPI(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        # Kayıt sonrası dönecek kullanıcı verilerini UserSerializer ile düzenliyoruz
+        user = serializer.save()  # User üzerinden kayıt işlemi yapılır.
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)[1]  # Knox token üretimi
+            "token": AuthToken.objects.create(user)[1]  # Knox token üretiliyor.
         })
 
 # Login API - Kullanıcı girişi yapar
@@ -56,17 +55,13 @@ class LogoutAPI(APIView):
         blacklist_token(token)
         return Response({"message": "Başarıyla çıkış yapıldı."})
 
-# RedirectView örneği
-class ProjectCreaterRedirectView(RedirectView):
-    url = '/some-url/'
-
 # Kullanıcı listeleme (Sadece Admin)
 class UserListView(APIView):
     permission_classes = [IsAdminUser]
 
     def get(self, request):
-        users = CrudUser.objects.all()  # CrudUser üzerinden tüm kullanıcıları çekiyoruz
-        print(users.count())  # Konsolda toplam kayıt sayısını görebilirsiniz
+        users = User.objects.all()  # Tüm kullanıcıları getiriyoruz.
+        print("Toplam kullanıcı sayısı:", users.count())  # Konsola toplam kayıt sayısını yazdırır.
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
@@ -76,8 +71,8 @@ class UserUpdateView(APIView):
 
     def put(self, request, pk):
         try:
-            user = CrudUser.objects.get(id=pk)
-        except CrudUser.DoesNotExist:
+            user = User.objects.get(id=pk)
+        except User.DoesNotExist:
             return Response({"error": "Kullanıcı bulunamadı."}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializer(user, data=request.data)
@@ -92,8 +87,8 @@ class UserDeleteView(APIView):
 
     def delete(self, request, pk):
         try:
-            user = CrudUser.objects.get(id=pk)
-        except CrudUser.DoesNotExist:
+            user = User.objects.get(id=pk)
+        except User.DoesNotExist:
             return Response({"error": "Kullanıcı bulunamadı."}, status=status.HTTP_404_NOT_FOUND)
         user.delete()
         return Response({"message": "Kullanıcı başarıyla silindi."})
