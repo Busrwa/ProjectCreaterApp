@@ -3,6 +3,13 @@ from django.db import models
 
 class CrudUser(AbstractUser):
     # Define custom fields here if needed
+    ROLE_CHOICES = [
+        ('admin', 'Admin'),
+        ('team_lead', 'Team Lead'),
+        ('member', 'Member'),
+        ('viewer', 'Viewer'),
+    ]
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='viewer')
 
     # Add related_name to avoid conflicts with the default User model
     groups = models.ManyToManyField(
