@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da022bbf-927a-4c4d-9e8a-655833e5e2ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_5IyeQdx.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_6O5h9OA.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_Dei771J.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_cO2aYS3.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_hviCl0G.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_kTsEJJV.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_oONgVdu.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/project_files/SENG226_Midterm_-_SOLUTIONS_xyF3WHT.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectApp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectApp/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectCreater/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectCreater/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectCreater/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/views.py" afterDir="false" />
     </list>
@@ -89,8 +95,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
-        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
+        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
       </set>
     </attachedChunks>
   </component>
@@ -121,6 +127,7 @@
       <workItem from="1743360407427" duration="1189000" />
       <workItem from="1743427996042" duration="6042000" />
       <workItem from="1743537365419" duration="9338000" />
+      <workItem from="1743588400093" duration="9911000" />
     </task>
     <servers />
   </component>

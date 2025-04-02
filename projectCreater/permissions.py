@@ -1,4 +1,6 @@
 from rest_framework import permissions
+from rest_framework.permissions import BasePermission
+
 from .models import Project  # Eğer Project modeliniz farklı bir uygulamadaysa yolu ayarlayın
 
 class IsTeamLeadOrAdmin(permissions.BasePermission):
@@ -25,3 +27,16 @@ class CanListProjects(permissions.BasePermission):
         if request.method == 'GET':
             return request.user.is_authenticated and (request.user.is_superuser or hasattr(request.user, 'role') and request.user.role == 'team_lead')
         return True  # Diğer metotlara (POST vb.) izin vermek için (gerekirse düzenlenebilir)
+
+class IsProjectMemberOrForbidden(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.is_authenticated  # Kullanıcı giriş yapmış mı?
+
+    def has_object_permission(self, request, view, obj):
+        # Admin her şeye erişebilir
+        if request.user.is_superuser:
+            return True
+        # Kullanıcı takım lideri mi veya proje ekibinde mi?
+        if request.user == obj.team_lead or request.user in obj.team_members.all():
+            return True
+        return False  # Aksi takdirde erişim izni yok

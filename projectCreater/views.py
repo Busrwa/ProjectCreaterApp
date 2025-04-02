@@ -4,9 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Project
 from .serializers import ProjectSerializer
 from rest_framework.permissions import IsAdminUser
-from .permissions import IsTeamLeadOrAdmin, CanListProjects
+from .permissions import IsTeamLeadOrAdmin, CanListProjects, IsProjectMemberOrForbidden
 from django.db.models import Q  # Q nesnesini doğrudan import edelim
-
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Project, ProjectFile
@@ -20,6 +19,7 @@ from django.shortcuts import get_object_or_404
 from .models import Project, ProjectFile
 from .serializers import ProjectFileSerializer
 from .permissions import IsTeamLeadOrAdmin
+
 
 # Proje ekleme
 class ProjectCreateView(generics.CreateAPIView):
@@ -43,8 +43,7 @@ class ProjectListView(generics.ListAPIView):
 class ProjectDetailView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [IsProjectMemberOrForbidden]
 # Proje güncelleme
 class ProjectUpdateView(generics.UpdateAPIView):
     queryset = Project.objects.all()
