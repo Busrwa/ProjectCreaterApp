@@ -19,7 +19,7 @@ from django.shortcuts import get_object_or_404
 from .models import Project, ProjectFile
 from .serializers import ProjectFileSerializer
 from .permissions import IsTeamLeadOrAdmin
-
+from .permissions import CanUploadFileToProject
 
 # Proje ekleme
 class ProjectCreateView(generics.CreateAPIView):
@@ -57,12 +57,13 @@ class ProjectDeleteView(generics.DestroyAPIView):
     permission_classes = [IsAdminUser]
 
 # Proje dosyasını yüklemek için view
+
 class ProjectFileUploadView(generics.CreateAPIView):
     queryset = ProjectFile.objects.all()
     serializer_class = ProjectFileSerializer
-    permission_classes = [IsAuthenticated, IsTeamLeadOrAdmin]
+    permission_classes = [IsAuthenticated, CanUploadFileToProject]
 
-    def perform_create(self, serializer): #tarih ve kullanıcı idsini otmatik alıyor
+    def perform_create(self, serializer):
         project_id = self.kwargs.get('project_id')
         project = get_object_or_404(Project, id=project_id)
         serializer.save(uploaded_by=self.request.user, project=project)
@@ -82,4 +83,10 @@ class ProjectFileDownloadView(generics.RetrieveAPIView):
 class ProjectFileDeleteView(generics.DestroyAPIView):
     queryset = ProjectFile.objects.all()
     serializer_class = ProjectFileSerializer
-    permission_classes = [IsAuthenticated, IsTeamLeadOrAdmin]  # Sadece admin ve team_lead silme işlemi yapabilir
+    permission_classes = [IsAuthenticated, IsTeamLeadOrAdmin]
+
+    def check_object_permissions(self, request, obj):
+        # Eğer obje ProjectFile ise ve team_lead attribute'u yoksa, ekle
+        if isinstance(obj, ProjectFile) and not hasattr(obj, 'team_lead'):
+            obj.team_lead = obj.project.team_lead
+        super().check_object_permissions(request, obj)

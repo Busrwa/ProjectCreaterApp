@@ -40,3 +40,19 @@ class IsProjectMemberOrForbidden(BasePermission):
         if request.user == obj.team_lead or request.user in obj.team_members.all():
             return True
         return False  # Aksi takdirde erişim izni yok
+
+class CanUploadFileToProject(permissions.BasePermission):
+    """
+    Sadece admin, takım lideri veya proje üyesinin projeye dosya yüklemesine izin verir (CreateAPIView için).
+    """
+    def has_permission(self, request, view):
+        if request.method == 'POST':
+            project_id = view.kwargs.get('project_id')
+            if project_id is None or not request.user.is_authenticated:
+                return False
+            try:
+                project = Project.objects.get(pk=project_id)
+                return request.user.is_superuser or project.team_lead == request.user or request.user in project.team_members.all()
+            except Project.DoesNotExist:
+                return False
+        return True
