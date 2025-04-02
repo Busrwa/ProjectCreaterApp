@@ -14,6 +14,10 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Medya dosyalarının yüklenmesi ve sunulması için gerekli ayarlar
+MEDIA_URL = '/media/'  # URL üzerinden erişilecek olan medya dosyaları için temel yol.
+MEDIA_ROOT = BASE_DIR / 'media'  # Dosyaların kaydedileceği dizin.
+
 
 
 # Quick-start development settings - unsuitable for production

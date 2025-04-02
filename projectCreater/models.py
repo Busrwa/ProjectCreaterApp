@@ -1,5 +1,8 @@
+# models.py
+
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Project(models.Model):
     INTERNAL_EXTERNAL_CHOICES = [
@@ -20,3 +23,17 @@ class Project(models.Model):
 
     def __str__(self):
         return self.organisation
+
+#dosya yüklemeyi ayrı yapıyoruz
+class ProjectFile(models.Model):
+    project = models.ForeignKey(Project, related_name='files', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='project_files/')  # Dosyalar 'project_files/' klasörüne yüklenecek
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"File {self.file.name} for {self.project.organisation}"
+
+    def clean(self):
+        if self.project.team_lead != self.uploaded_by and self.uploaded_by not in self.project.team_members.all() and not self.uploaded_by.is_superuser:
+            raise ValidationError("Only team lead, team members, or admin can upload files.")
