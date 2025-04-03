@@ -1,4 +1,4 @@
-# 02.04.2025 tüm hatalar bakıldı
+# 03.04.2025 Task modeli oluşturuldu
 from django.contrib import admin
 from .models import Project, ProjectFile
 

@@ -57,7 +57,6 @@ class ProjectDeleteView(generics.DestroyAPIView):
     permission_classes = [IsAdminUser]
 
 # Proje dosyasını yüklemek için view
-
 class ProjectFileUploadView(generics.CreateAPIView):
     queryset = ProjectFile.objects.all()
     serializer_class = ProjectFileSerializer
