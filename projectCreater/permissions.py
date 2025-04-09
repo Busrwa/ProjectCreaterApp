@@ -56,3 +56,17 @@ class CanUploadFileToProject(permissions.BasePermission):
             except Project.DoesNotExist:
                 return False
         return True
+
+#Task için permissions
+
+
+class CanListTasks(permissions.BasePermission):
+    """
+    Admn dışında Sadece assigned_to veya assigned_by rolündeki kullanıcıların projeleri listelemesine izin verir.
+    """
+    def has_permission(self, request, view):
+        # Sadece GET istekleri (listeleme) için kontrol yapıyoruz.
+        if request.method == 'GET':
+            return request.user.is_authenticated and (request.user.is_superuser or hasattr(request.user, 'role') and request.user.role == 'team_lead')
+        return True  # Diğer metotlara (POST vb.) izin vermek için (gerekirse düzenlenebilir)
+

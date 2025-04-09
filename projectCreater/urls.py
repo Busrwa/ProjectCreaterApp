@@ -11,7 +11,12 @@ from .views import (
     ProjectDeleteView,
     ProjectFileUploadView,
     ProjectFileDownloadView,
-    ProjectFileDeleteView
+    ProjectFileDeleteView,
+    TaskCreateView,
+    TaskListView,
+    TaskDetailView,
+    TaskUpdateView,
+    TaskDeleteView
 )
 
 urlpatterns = [
@@ -25,8 +30,16 @@ urlpatterns = [
     path('project/<int:project_id>/file/upload/', ProjectFileUploadView.as_view(), name='file-upload'), #team-lead, member ve admin ekleme yapabilmeli.
     path('project/file/<int:pk>/download/', ProjectFileDownloadView.as_view(), name='file-download'),  #team-lead, member ve admin indirme yapabilmeli.
     path('project/file/<int:pk>/delete/', ProjectFileDeleteView.as_view(), name='file-delete'),  #team-lead ve admin silme yapabilmeli.
+
+    # Task işlemleri
+    path('task-add/', TaskCreateView.as_view(), name='task-add'),
+    path('tasks/', TaskListView.as_view(), name='tasks'),
+    path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
+    path('tasks/<int:pk>/update/', TaskUpdateView.as_view(), name='task-update'),
+    path('tasks/<int:pk>/delete/', TaskDeleteView.as_view(), name='task-delete'),
 ]
 
 # Geliştirme ortamında medya dosyalarını servis etme
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

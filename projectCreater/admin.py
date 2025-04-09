@@ -1,4 +1,4 @@
-# 03.04.2025 Task modeli oluşturuldu
+# 09.04.2025
 from django.contrib import admin
 from .models import Project, ProjectFile
 

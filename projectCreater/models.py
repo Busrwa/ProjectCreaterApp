@@ -1,9 +1,6 @@
-# models.py
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
 from accounts.models import CrudUser
 
 
@@ -41,19 +38,22 @@ class ProjectFile(models.Model):
         if self.project.team_lead != self.uploaded_by and self.uploaded_by not in self.project.team_members.all() and not self.uploaded_by.is_superuser:
             raise ValidationError("Only team lead, team members, or admin can upload files.")
 
+
 class Task(models.Model):
     title = models.CharField(max_length=255)
-    assigned_by = models.ForeignKey(CrudUser, related_name='tasks_assigned', on_delete=models.CASCADE)
-    assigned_to = models.ForeignKey(CrudUser, related_name='tasks_received', on_delete=models.CASCADE)
+    assigned_by = models.ForeignKey(User, related_name='tasks_assigned', on_delete=models.CASCADE)
+    assigned_to = models.ForeignKey(User, related_name='tasks_received', on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     message = models.TextField()
+
     STATUS_CHOICES = [
         ('todo', 'Tamamlanması Gerekiyor'),
         ('completed', 'Tamamlandı'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='todo')
-    project = models.ForeignKey('Project', related_name='tasks', on_delete=models.CASCADE) # Project modeline ForeignKey
+    project = models.ForeignKey('Project', related_name='tasks',
+                                on_delete=models.CASCADE)  # Project modeline ForeignKey
 
     def __str__(self):
         return self.title

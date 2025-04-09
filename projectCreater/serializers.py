@@ -1,8 +1,6 @@
-# serializers.py
-
 from rest_framework import serializers
-from .models import Project, ProjectFile
-
+from .models import Project, ProjectFile, Task  # Task modelini de dahil ettik
+from .permissions import IsTeamLeadOrAdmin
 
 class ProjectFileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,9 +9,16 @@ class ProjectFileSerializer(serializers.ModelSerializer):
         read_only_fields = ('uploaded_by', 'uploaded_at')
 
 
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
+        read_only_fields = ('assigned_by',)  # Eğer assigned_by otomatik doldurulacaksa
+
+
 class ProjectSerializer(serializers.ModelSerializer):
-    # 'related_name' olarak modelde 'files' tanımlandıysa, dosyaları bu alan üzerinden alıyoruz
     files = ProjectFileSerializer(many=True, read_only=True)
+    tasks = TaskSerializer(many=True, read_only=True)  # Task'ları nested olarak ekledik
 
     class Meta:
         model = Project
@@ -27,5 +32,6 @@ class ProjectSerializer(serializers.ModelSerializer):
             'last_delivery_date',
             'description',
             'description_added_date',
-            'files',  # Projeye ait dosyalar burada listelenecek
+            'files',   # Projeye ait dosyalar
+            'tasks',   # Projeye ait task'lar (görevler)
         ]
