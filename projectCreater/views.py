@@ -31,7 +31,6 @@ from django.db.models import Q
 from .models import Task
 from .serializers import TaskSerializer
 from .permissions import IsTeamLeadOrAdmin, IsProjectMemberOrForbidden
-
 from .models import Task
 from .serializers import TaskSerializer
 
@@ -45,19 +44,13 @@ class ProjectCreateView(generics.CreateAPIView):
 class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsProjectMemberOrForbidden]
 
-    def get_queryset(self):
-        user = self.request.user
-        # Kullanıcının team_member olduğu veya team_lead olduğu projeleri filtrele
-        return Project.objects.filter(
-            Q(team_members=user) | Q(team_lead=user)
-        ).distinct()
 # Belirli bir projeyi görüntüleme
 class ProjectDetailView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsProjectMemberOrForbidden]
+
 # Proje güncelleme
 class ProjectUpdateView(generics.UpdateAPIView):
     queryset = Project.objects.all()
@@ -135,17 +128,20 @@ class TaskCreateView(generics.CreateAPIView):
 # Projede erişimi olan kullanıcılar (team_lead, team_members veya assigned_to) görevleri görebilir.
 class TaskListView(generics.ListAPIView):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
+        if user.is_staff or user.is_superuser:
+            # Admin ise tüm task’leri döndür
+            return Task.objects.all()
+        # Normal kullanıcı ise filtrele
         return Task.objects.filter(
             Q(assigned_to=user) |
             Q(assigned_by=user) |
             Q(project__team_lead=user) |
             Q(project__team_members=user, assigned_to=user)
         ).distinct()
-
 
 
 # --- Task Detay ---

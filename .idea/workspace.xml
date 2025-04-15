@@ -8,10 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectCreater/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/permissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectCreater/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectCreater/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/projectCreater/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +119,9 @@
       <workItem from="1743588400093" duration="9911000" />
       <workItem from="1743694879410" duration="1209000" />
       <workItem from="1744181415870" duration="31000" />
-      <workItem from="1744181471408" duration="8789000" />
+      <workItem from="1744181471408" duration="9389000" />
+      <workItem from="1744227344709" duration="2139000" />
+      <workItem from="1744720664508" duration="3676000" />
     </task>
     <servers />
   </component>
