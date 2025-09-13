@@ -1,57 +1,102 @@
-# TeamProjectHub Backend
+# 🚀 TeamProjectHub Backend
 
-## 🚀 Proje Açıklaması
-TeamProjectHub, ekipler için proje yönetimini kolaylaştıran bir backend API'sidir. Kullanıcılar projeler oluşturabilir, takımlara atayabilir, belirli kişilere görevler verebilir ve projelerin ilerleme durumlarını takip edebilirler.
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github&logoColor=white)](https://github.com/Busrwa/ProjectCreaterApp)
 
-## 📌 Özellikler
-- 🔹 **Proje Yönetimi**: Yeni projeler oluşturma, düzenleme ve silme.
-- 🔹 **Takım Yönetimi**: Kullanıcıları takımlara atama.
-- 🔹 **Görev Atama**: Proje içindeki görevleri belirli kişilere atama.
-- 🔹 **Son Tarih Takibi**: Projelerin teslim tarihlerini belirleme ve takip etme.
-- 🔹 **API Dokümantasyonu**: Swagger veya Postman ile test edilebilir RESTful API.
+---
 
-## 🛠️ Teknolojiler
-- **Backend Framework**: FastAPI / Flask / Django (Seçiminize bağlı)
-- **Veritabanı**: PostgreSQL / MySQL / SQLite
-- **Kimlik Doğrulama**: JWT / OAuth2
-- **Dokümantasyon**: Swagger / Postman
-- **Deployment**: Docker / AWS / Heroku
+## 🇹🇷 Türkçe
 
-## 📂 Kurulum
+### 🔹 Proje Açıklaması
 
-### 1️⃣ Projeyi Klonlayın
+TeamProjectHub, ekipler için **proje yönetimini kolaylaştıran bir backend API**'sidir.  
+Kullanıcılar projeler oluşturabilir, takımlara atayabilir, belirli kişilere görevler verebilir ve projelerin ilerleme durumlarını takip edebilirler.
+
+### ⚙️ Teknik Detaylar
+
+* **Backend Framework:** Django
+* **Veritabanı:** SQLite (varsayılan)
+* **Kimlik Doğrulama:** JWT
+* **Dokümantasyon:** Swagger
+* **Deployment:** Docker / Heroku
+* RESTful API ile proje ve takım yönetimi işlemleri
+
+### 💡 Kullanım Senaryoları
+
+* Ekip projelerinin merkezi yönetimi
+* Görev ve zaman takibi
+* Proje ilerleme raporlaması
+
+### 🛠️ Kurulum ve Kullanım
+
 ```bash
-git clone https://github.com/kullaniciadi/ProjectCreaterApp.git
+git clone https://github.com/Busrwa/ProjectCreaterApp.git
 cd ProjectCreaterApp
-```
-
-### 2️⃣ Sanal Ortam Oluşturun ve Bağımlılıkları Yükleyin
-```bash
 python -m venv venv
-source venv/bin/activate  # Windows için: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+
+# Veritabanını ayarlayın
+python manage.py migrate
+
+# Sunucuyu başlatın
+python manage.py runserver
 ```
 
-### 3️⃣ Veritabanını Ayarlayın
-```bash
-python manage.py migrate  # Django için
-alembic upgrade head  # FastAPI için
-```
+### 📌 Katkıda Bulunma
 
-### 4️⃣ Sunucuyu Başlatın
-```bash
-uvicorn main:app --reload  # FastAPI için
-python manage.py runserver  # Django için
-```
-
-
-## 📌 Katkıda Bulunma
 1. **Fork** yapın 📌
 2. Yeni bir **branch** oluşturun (`feature/yeniozellik`)
 3. Değişikliklerinizi yapın ve **commit** atın
 4. **Pull request** gönderin 🎉
 
+---
+
+## 🇬🇧 English
+
+### 🔹 Project Description
+
+TeamProjectHub is a **backend API designed to simplify project management for teams**.  
+Users can create projects, assign them to teams, allocate tasks to specific members, and track project progress.
+
+### ⚙️ Technical Details
+
+* **Backend Framework:** Django
+* **Database:** SQLite (default)
+* **Authentication:** JWT
+* **Documentation:** Swagger
+* **Deployment:** Docker / Heroku
+* RESTful API for project and team management operations
+
+### 💡 Use Cases
+
+* Centralized management of team projects
+* Task and deadline tracking
+* Project progress reporting
+
+### 🛠️ Installation & Usage
+
+```bash
+git clone https://github.com/Busrwa/ProjectCreaterApp.git
+cd ProjectCreaterApp
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# Setup the database
+python manage.py migrate
+
+# Start the server
+python manage.py runserver
+```
+
+### 📌 Contributing
+
+1. **Fork** the repository 📌
+2. Create a new **branch** (`feature/new-feature`)
+3. Make your changes and **commit** them
+4. Submit a **pull request** 🎉
 
 ---
-💡 **Destek olmak için projeyi yıldızlayabilirsiniz! ⭐**
 
+💡 **Support the project by giving it a star! ⭐**
